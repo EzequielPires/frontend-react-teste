@@ -1,4 +1,4 @@
-import { Flex, Input, Text } from "@chakra-ui/react";
+import { Flex, FormControl, FormLabel, Input, Text } from "@chakra-ui/react";
 import { useState } from "react";
 
 interface Props {
@@ -9,16 +9,13 @@ interface Props {
 
 export function InputDefault({ label, ...rest }: Props) {
     return (
-        <Flex direction={'column'} alignItems={'center'}>
-            <Text mb='8px'>{label}</Text>
+        <FormControl isRequired>
+            <FormLabel htmlFor='first-name'>{label}</FormLabel>
             <Input
-                width={'220px'}
-                height={'48px'}
-                bg={'white'}
-                color={'gray.700'}
-                maxLength={4}
+                _focus={{borderColor: 'primary'}}
+                id='first-name'
                 {...rest}
             />
-        </Flex>
+        </FormControl>
     )
 }

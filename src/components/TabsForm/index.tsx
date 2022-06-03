@@ -19,6 +19,7 @@ export function TabsForm() {
         <Tabs isFitted variant='enclosed' w={'100%'} maxW={'700px'}>
             <TabList gap={"8px"}>
                 <Tab
+                fontSize={['.875rem', '1rem']}
                     _selected={{
                         border: '1px solid',
                         borderBottomColor: 'background',
@@ -30,6 +31,7 @@ export function TabsForm() {
                     Busca simples
                 </Tab>
                 <Tab
+                    fontSize={['.875rem', '1rem']}
                     _selected={{
                         border: '1px solid',
                         borderBottomColor: 'background',
@@ -44,7 +46,7 @@ export function TabsForm() {
             <TabPanels mt={'16px'}>
                 <TabPanel display={'flex'} flexDirection='column' alignItems={'center'}>
                     <InputDefault
-                        label="Tamanho do fato"
+                        label="Tamanho máximo do fato"
                         placeholder="Ex.: 248"
                         type="number"
                         {...inputSizeFacts}
@@ -58,7 +60,7 @@ export function TabsForm() {
                 <TabPanel display={'flex'} flexDirection='column' alignItems={'center'}>
                     <Flex justifyContent={'center'} gap={'24px'}>
                         <InputDefault
-                            label="Tamanho do fato"
+                            label="Tamanho máximo do fato"
                             placeholder="Ex.: 248"
                             type="number"
                             {...inputSizeFacts}

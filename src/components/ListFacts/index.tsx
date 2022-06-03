@@ -1,6 +1,7 @@
-import { Box, Flex, List, Skeleton, Stack, Text } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
-import { useFact } from "src/hooks/useFacts";
+import Lottie from 'react-lottie-player';
+import { Box, Flex, List, Skeleton, Stack, Text } from "@chakra-ui/react";
+import { useFact } from "../../hooks/useFacts";
 import { ListFactsItem } from "../ListFactsItem";
 
 interface FactsProps {
@@ -30,10 +31,15 @@ export function ListFacts({ facts }: Props) {
             alignItems={'center'}
             mt={'48px'}
             mx={'auto'}
+            w={'100%'}
             maxWidth={'700'}
         >
             <Text color={'white'} fontSize={'1.5rem'} fontWeight={'semibold'}>Lista de Fatos</Text>
-            <List spacing={3} mt={'24px'}>
+            <List
+                spacing={3}
+                mt={'24px'}
+                w={'100%'}
+            >
                 {facts?.map((item, index) => (
                     <ListFactsItem
                         key={index}
@@ -42,12 +48,16 @@ export function ListFacts({ facts }: Props) {
                     />
                 ))}
             </List>
-            <Box ref={elementRef} w={'100%'} h={'24px'}/>
+            <Box
+                ref={elementRef}
+                w={'100%'}
+                h={'24px'}
+            />
             {isLoading &&
                 <Stack w={'100%'} spacing={3}>
-                    <Skeleton height='64px' rounded='md'/>
-                    <Skeleton height='64px' rounded='md'/>
-                    <Skeleton height='64px' rounded='md'/>
+                    <Skeleton height='64px' rounded='md' />
+                    <Skeleton height='64px' rounded='md' />
+                    <Skeleton height='64px' rounded='md' />
                 </Stack>
             }
         </Flex>

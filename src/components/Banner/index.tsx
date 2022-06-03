@@ -1,10 +1,11 @@
-import { Box, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 
 export function Banner() {
     return (
-        <Box
-            boxSize='sm'
-            mt={"96px"}
+        <Flex
+            justifyContent={'center'}
+            w={[200, 400, 500]}
+            my={"64px"}
             position="relative"
         >
             <Image
@@ -18,12 +19,17 @@ export function Banner() {
                 backdropFilter='auto'
                 backdropBlur='24px'
                 py={"8px"}
-                px={"24px"}
+                px={['8px', '24px']}
                 position="absolute"
-                top={"16px"}
-                left={"-56px"}
+                top={['48px', "16px"]}
+                left={['-56px', "0"]}
             >
-                <Text color='white'>São limpos.</Text>
+                <Text
+                    fontSize={['.875rem', '1rem']}
+                    color='white'
+                >
+                    São limpos.
+                </Text>
             </Box>
             <Box
                 w={'fit-content'}
@@ -32,12 +38,17 @@ export function Banner() {
                 backdropFilter='auto'
                 backdropBlur='24px'
                 py={"8px"}
-                px={"24px"}
+                px={['8px', '24px']}
                 position="absolute"
-                top={"-32px"}
-                left={"188px"}
+                top={['-8px', "-32px"]}
+                left={['-48px', "188px"]}
             >
-                <Text>São familiares.</Text>
+                <Text
+                    fontSize={['.875rem', '1rem']}
+                    color='white'
+                >
+                    São familiares.
+                </Text>
             </Box>
             <Box
                 w={'fit-content'}
@@ -46,12 +57,17 @@ export function Banner() {
                 backdropFilter='auto'
                 backdropBlur='24px'
                 py={"8px"}
-                px={"24px"}
+                px={['8px', '24px']}
                 position="absolute"
-                top={"56px"}
-                left={"277px"}
+                top={['132px', '56px']}
+                left={['-56px', '277px']}
             >
-                <Text>São independentes.</Text>
+                <Text
+                    fontSize={['.875rem', '1rem']}
+                    color='white'
+                >
+                    São independentes.
+                </Text>
             </Box>
             <Box
                 w={'fit-content'}
@@ -60,12 +76,17 @@ export function Banner() {
                 backdropFilter='auto'
                 backdropBlur='24px'
                 py={"8px"}
-                px={"24px"}
+                px={['8px', '24px']}
                 position="absolute"
-                top={"256px"}
-                left={"266px"}
+                top={['132px', '256px']}
+                left={['124px', '266px']}
             >
-                <Text>São inteligentes.</Text>
+                <Text
+                    fontSize={['.875rem', '1rem']}
+                    color='white'
+                >
+                    São inteligentes.
+                </Text>
             </Box>
             <Box
                 w={'fit-content'}
@@ -74,12 +95,17 @@ export function Banner() {
                 backdropFilter='auto'
                 backdropBlur='24px'
                 py={"8px"}
-                px={"24px"}
+                px={['8px', '24px']}
                 position="absolute"
-                top={"263px"}
-                left={"-52px"}
+                top={['48px', '263px']}
+                left={['120px', '52px']}
             >
-                <Text>São sentimentais.</Text>
+                <Text
+                    fontSize={['.875rem', '1rem']}
+                    color='white'
+                >
+                    São sentimentais.
+                </Text>
             </Box>
             <Box
                 w={'fit-content'}
@@ -88,13 +114,18 @@ export function Banner() {
                 backdropFilter='auto'
                 backdropBlur='24px'
                 py={"8px"}
-                px={"24px"}
+                px={['8px', '24px']}
                 position="absolute"
-                top={"167px"}
-                left={"-147px"}
+                top={["-16px", "167px"]}
+                left={["80px", "-147px"]}
             >
-                <Text>São hábeis e curiosos.</Text>
+                <Text
+                    fontSize={['.875rem', '1rem']}
+                    color='white'
+                >
+                    São hábeis e curiosos.
+                </Text>
             </Box>
-        </Box>
+        </Flex>
     )
 }
