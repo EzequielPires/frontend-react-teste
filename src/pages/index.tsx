@@ -16,7 +16,7 @@ export default function Home() {
       <Banner />
       <Text
         color="white"
-        fontSize={'1.5rem'}
+        fontSize={['1rem', '1.5rem']}
         fontWeight={'semibold'}
         textAlign={'center'}
         mb={'16px'}

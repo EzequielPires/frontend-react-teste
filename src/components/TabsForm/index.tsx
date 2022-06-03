@@ -17,11 +17,12 @@ export function TabsForm() {
 
     return (
         <Tabs isFitted variant='enclosed' w={'100%'} maxW={'700px'}>
-            <TabList gap={"8px"}>
+            <TabList gap={"8px"} borderColor={'gray.300'}>
                 <Tab
                     fontSize={['.875rem', '1rem']}
                     _selected={{
                         border: '1px solid',
+                        borderColor: 'gray.300',
                         borderBottomColor: 'background',
                     }}
                     _focus={{
@@ -34,6 +35,7 @@ export function TabsForm() {
                     fontSize={['.875rem', '1rem']}
                     _selected={{
                         border: '1px solid',
+                        borderColor: 'gray.300',
                         borderBottomColor: 'background',
                     }}
                     _focus={{
