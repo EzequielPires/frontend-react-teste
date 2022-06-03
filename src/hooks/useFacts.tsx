@@ -34,10 +34,11 @@ function FactProvider({ children }) {
     const [facts, setFacts] = useState<FactsProps[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    function buildLink() {
-        let link = '/facts';
-        { inputSizeFacts.value != '' ? link = link + `?max_length=${inputSizeFacts.value}` : null }
+    function buildLink(nextPage?: number) {
+        let link = '/facts?';
+        { inputSizeFacts.value != '' ? link = link + `max_length=${inputSizeFacts.value}` : null }
         { inputAmountFacts.value != '' ? link = link + `&limit=${inputAmountFacts.value}` : null }
+        {nextPage ? link = link + `&page=${nextPage}` : null}
         return link;
     }
 
@@ -59,7 +60,7 @@ function FactProvider({ children }) {
     async function moreFacts() {
         if (nextPage < lastPage) {
             setIsLoading(true);
-            await api.get(`/facts?page=${nextPage}`)
+            await api.get(buildLink(nextPage))
                 .then(res => {
                     setFacts([...facts, ...res.data.data]);
                     setIsLoading(false);

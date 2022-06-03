@@ -10,7 +10,7 @@ interface Props {
 export function InputDefault({ label, ...rest }: Props) {
     return (
         <FormControl isRequired>
-            <FormLabel htmlFor='first-name'>{label}</FormLabel>
+            <FormLabel htmlFor='first-name' fontSize={['.875rem', '1rem']}>{label}</FormLabel>
             <Input
                 _focus={{borderColor: 'primary'}}
                 id='first-name'

@@ -19,7 +19,7 @@ export function TabsForm() {
         <Tabs isFitted variant='enclosed' w={'100%'} maxW={'700px'}>
             <TabList gap={"8px"}>
                 <Tab
-                fontSize={['.875rem', '1rem']}
+                    fontSize={['.875rem', '1rem']}
                     _selected={{
                         border: '1px solid',
                         borderBottomColor: 'background',
