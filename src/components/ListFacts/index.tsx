@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import Lottie from 'react-lottie-player';
-import { Box, Flex, List, Skeleton, Stack, Text } from "@chakra-ui/react";
+import { Box, Flex, List, ListItem, Skeleton, Stack, Text } from "@chakra-ui/react";
 import { useFact } from "../../hooks/useFacts";
-import { ListFactsItem } from "../ListFactsItem";
+import { Card } from "../Card";
 
 interface FactsProps {
     fact: string;
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export function ListFacts({ facts }: Props) {
-    const { isLoading, moreFacts } = useFact();
+    const { moreFacts } = useFact();
     const elementRef = useRef(null);
 
     async function handleMoreFacts(entries) {
@@ -41,11 +41,9 @@ export function ListFacts({ facts }: Props) {
                 w={'100%'}
             >
                 {facts?.map((item, index) => (
-                    <ListFactsItem
-                        key={index}
-                        fact={item.fact}
-                        length={item.length}
-                    />
+                    <ListItem key={index}>
+                        <Card fact={item.fact} length={item.length} />
+                    </ListItem>
                 ))}
             </List>
             <Box

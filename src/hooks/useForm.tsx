@@ -9,6 +9,7 @@ export function useForm() {
 
     return {
         value,
+        setValue: (value) => setValue(value),
         onChange
     }
 }

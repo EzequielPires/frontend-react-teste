@@ -14,79 +14,80 @@ interface Input {
 }
 
 interface FactContextProps {
+    randomFact: FactsProps;
     facts: FactsProps[];
     isLoading: boolean;
     notFoundFacts: boolean;
     inputSizeFacts: Input;
     inputAmountFacts: Input;
     getFacts: () => Promise<void>;
+    getRandomFact: () => Promise<void>;
     moreFacts: () => Promise<void>;
-    handleSetTypeList: (value: string) => void;
+    handleSetTypeList: () => void;
 }
 
 const FactContext = createContext({} as FactContextProps);
 
 function FactProvider({ children }) {
-    const [typeList, setTypeList] = useState('simple');
     const inputSizeFacts = useForm();
     const inputAmountFacts = useForm();
+    
     const [notFoundFacts, setNotFoundFacts] = useState(false);
     const [nextPage, setNextPage] = useState(2);
     const [lastPage, setLastPage] = useState(0);
+    
+    const [randomFact, setRandomFact] = useState<FactsProps>(null);
     const [facts, setFacts] = useState<FactsProps[]>([]);
+    
     const [isLoading, setIsLoading] = useState(false);
 
-    function handleSetTypeList(value: 'simple' | 'advanced') {
-        setTypeList(value);
+    function handleSetTypeList() {
+        setFacts([]);
+        setRandomFact(null);
+        setNotFoundFacts(false);
+        setNextPage(2);
+        setLastPage(0);
+        inputSizeFacts.setValue('');
+        inputAmountFacts.setValue('');
     }
 
-    function buildLink(nextPage?: number) {
-        let link = '/facts?';
-        { inputSizeFacts.value != '' ? link = link + `max_length=${inputSizeFacts.value}` : null }
-        { inputAmountFacts.value != '' && typeList === 'advanced' ? link = link + `&limit=${inputAmountFacts.value}` : null }
-        {nextPage ? link = link + `&page=${nextPage}` : null}
-        return link;
+    async function getRandomFact() {
+        setIsLoading(true);
+        const {data} = await api.get(`/fact?max_length=${inputSizeFacts.value}`);
+        { !data.fact ? setNotFoundFacts(true) : setNotFoundFacts(false) }
+        setRandomFact(data);
+        setIsLoading(false);
     }
 
     async function getFacts() {
         setIsLoading(true);
-        await api.get(buildLink())
-            .then(res => {
-                setFacts(res.data.data);
-                setLastPage(res.data.last_page)
-                setIsLoading(false);
-                {res.data.data.length === 0 ? setNotFoundFacts(true) : setNotFoundFacts(false)}
-            })
-            .catch(error => {
-                setIsLoading(false);
-                throw new Error(error);
-            });
+        const {data} = await api.get(`/facts?max_length=${inputSizeFacts.value}&limit=${inputAmountFacts.value}`)
+        { data.data.length === 0 ? setNotFoundFacts(true) : setNotFoundFacts(false) }
+        setFacts(data.data);
+        setLastPage(data.last_page);
+        setIsLoading(false);
     }
 
     async function moreFacts() {
-        if (nextPage < lastPage) {
+        if (nextPage < lastPage && inputAmountFacts.value === '') {
             setIsLoading(true);
-            await api.get(buildLink(nextPage))
-                .then(res => {
-                    setFacts([...facts, ...res.data.data]);
-                    setIsLoading(false);
-                    setNextPage(nextPage + 1);
-                })
-                .catch(error => {
-                    setIsLoading(false);
-                    throw new Error(error);
-                });
+            const {data} =  await api.get(`/facts?max_length=${inputSizeFacts.value}&page=${nextPage}`);
+            setFacts([...facts, ...data.data]);
+            setNextPage(nextPage + 1);
+            setIsLoading(false);
         }
     }
 
     return (
         <FactContext.Provider value={{
+            randomFact,
             facts,
             isLoading,
             notFoundFacts,
             inputSizeFacts,
             inputAmountFacts,
             getFacts,
+            getRandomFact,
             moreFacts,
             handleSetTypeList
         }}>
