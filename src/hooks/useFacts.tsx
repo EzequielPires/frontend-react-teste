@@ -21,11 +21,13 @@ interface FactContextProps {
     inputAmountFacts: Input;
     getFacts: () => Promise<void>;
     moreFacts: () => Promise<void>;
+    handleSetTypeList: (value: string) => void;
 }
 
 const FactContext = createContext({} as FactContextProps);
 
 function FactProvider({ children }) {
+    const [typeList, setTypeList] = useState('simple');
     const inputSizeFacts = useForm();
     const inputAmountFacts = useForm();
     const [notFoundFacts, setNotFoundFacts] = useState(false);
@@ -34,10 +36,14 @@ function FactProvider({ children }) {
     const [facts, setFacts] = useState<FactsProps[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 
+    function handleSetTypeList(value: 'simple' | 'advanced') {
+        setTypeList(value);
+    }
+
     function buildLink(nextPage?: number) {
         let link = '/facts?';
         { inputSizeFacts.value != '' ? link = link + `max_length=${inputSizeFacts.value}` : null }
-        { inputAmountFacts.value != '' ? link = link + `&limit=${inputAmountFacts.value}` : null }
+        { inputAmountFacts.value != '' && typeList === 'advanced' ? link = link + `&limit=${inputAmountFacts.value}` : null }
         {nextPage ? link = link + `&page=${nextPage}` : null}
         return link;
     }
@@ -81,7 +87,8 @@ function FactProvider({ children }) {
             inputSizeFacts,
             inputAmountFacts,
             getFacts,
-            moreFacts
+            moreFacts,
+            handleSetTypeList
         }}>
             {children}
         </FactContext.Provider>

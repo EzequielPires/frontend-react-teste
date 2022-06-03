@@ -53,13 +53,6 @@ export function ListFacts({ facts }: Props) {
                 w={'100%'}
                 h={'24px'}
             />
-            {isLoading &&
-                <Stack w={'100%'} spacing={3}>
-                    <Skeleton height='64px' rounded='md' />
-                    <Skeleton height='64px' rounded='md' />
-                    <Skeleton height='64px' rounded='md' />
-                </Stack>
-            }
         </Flex>
     )
 }
