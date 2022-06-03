@@ -16,28 +16,32 @@ export function TabsForm() {
     }
 
     return (
-        <Tabs variant='unstyled'>
+        <Tabs isFitted variant='enclosed' w={'100%'} maxW={'700px'}>
             <TabList gap={"8px"}>
                 <Tab
-                    w={'348px'}
-                    rounded='md'
-                    border="1px"
-                    borderColor='secondary'
-                    _selected={{ color: 'white', bg: 'secondary' }}
+                    _selected={{
+                        border: '1px solid',
+                        borderBottomColor: 'background',
+                    }}
+                    _focus={{
+                        boxShadow: 'none'
+                    }}
                 >
                     Busca simples
                 </Tab>
                 <Tab
-                    w={'348px'}
-                    rounded='md'
-                    border="1px"
-                    borderColor='secondary'
-                    _selected={{ color: 'white', bg: 'secondary' }}
+                    _selected={{
+                        border: '1px solid',
+                        borderBottomColor: 'background',
+                    }}
+                    _focus={{
+                        boxShadow: 'none'
+                    }}
                 >
                     Busca avançada
                 </Tab>
             </TabList>
-            <TabPanels>
+            <TabPanels mt={'16px'}>
                 <TabPanel display={'flex'} flexDirection='column' alignItems={'center'}>
                     <InputDefault
                         label="Tamanho do fato"
