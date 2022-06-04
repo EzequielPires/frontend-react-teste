@@ -10,9 +10,7 @@
 
 ## :computer: Projeto
 
-Este é um projeto com finalide de teste e tem como objetivo o desenvolvimento de um site de fatos curiosos sobre gatos. Para realizar o projeto foi utilizado a api [CatNinja](https://catfact.ninja/)
-
-Este projeto foi feito para teste, tem como objetivo implementar um WebApp que consiste em buscar e listar fatos da api CatNinja.
+Este é um projeto com finalide de teste e tem como objetivo o desenvolvimento de um site de fatos curiosos sobre gatos. Para realizar o projeto foi utilizado a api [CatNinja](https://catfact.ninja/).
 
 <br/>
 
