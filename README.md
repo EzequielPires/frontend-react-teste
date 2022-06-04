@@ -14,6 +14,15 @@ Este é um projeto com finalide de teste e tem como objetivo o desenvolvimento d
 
 <br/>
 
+## :memo: Funcionalidades
+
+- [x] Buscar fato aleatório
+- [x] Listar os fatos
+- [x] Buscar lista de fatos
+- [x] Scroll infinito na lista de fatos
+
+<br/>
+
 ## :rocket: Tecnologias
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
