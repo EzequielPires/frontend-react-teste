@@ -1,18 +1,16 @@
-import { Box, Container, Flex, Text } from "@chakra-ui/react";
-import Lottie from "react-lottie-player";
-import { Banner } from "src/components/Banner";
-import { ListFacts } from "src/components/ListFacts";
-import { NotFound } from "src/components/NotFound";
-import { TabsForm } from "src/components/TabsForm";
-import { useFact } from "src/hooks/useFacts";
+import { Container, Text } from "@chakra-ui/react";
+import { Banner } from "../components/Banner";
+import { NotFound } from "../components/NotFound";
+import { TabsForm } from "../components/TabsForm";
+import { useFact } from "../hooks/useFacts";
 import { Header } from "../components/Header";
 
 
 
 export default function Home() {
-  const { facts, notFoundFacts } = useFact();
+  const { notFoundFacts } = useFact();
   return (
-    <Container display={'flex'} flexDirection={"column"} alignItems={"center"} bg={""}>
+    <Container className="_container" display={'flex'} flexDirection={"column"} alignItems={"center"} bg={""}>
       <Header />
       <Banner />
       <Text

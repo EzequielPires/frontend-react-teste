@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
-import Lottie from 'react-lottie-player';
-import { Box, Flex, List, ListItem, Skeleton, Stack, Text } from "@chakra-ui/react";
+import { Box, Flex, List, ListItem, Text } from "@chakra-ui/react";
 import { useFact } from "../../hooks/useFacts";
 import { Card } from "../Card";
 
@@ -14,10 +13,10 @@ interface Props {
 
 export function ListFacts({ facts }: Props) {
     const { moreFacts } = useFact();
-    const elementRef = useRef(null);
+    const elementRef = useRef<any>(null);
 
-    async function handleMoreFacts(entries) {
-        { entries.some(entry => entry.isIntersecting) && await moreFacts() }
+    async function handleMoreFacts(entries: any) {
+        { entries.some((entry:any) => entry.isIntersecting) && await moreFacts() }
     }
 
     useEffect(() => {
@@ -42,7 +41,7 @@ export function ListFacts({ facts }: Props) {
             >
                 {facts?.map((item, index) => (
                     <ListItem key={index}>
-                        <Card fact={item.fact} length={item.length} />
+                        <Card fact={item.fact} />
                     </ListItem>
                 ))}
             </List>

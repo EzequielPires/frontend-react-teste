@@ -1,5 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import { FactProvider } from 'src/hooks/useFacts';
+import { FactProvider } from '../hooks/useFacts';
 import { theme } from '../styles/theme';
 
 function MyApp({ Component, pageProps }) {

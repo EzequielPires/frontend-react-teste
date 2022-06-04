@@ -1,7 +1,11 @@
 import Error from "next/error";
-import { createContext, useContext, useState } from "react";
-import { api } from "src/services/axios";
+import { createContext, ReactNode, useContext, useState } from "react";
+import { api } from "../services/axios";
 import { useForm } from "./useForm";
+
+interface FactsProvideProps {
+    children: ReactNode;
+}
 
 interface FactsProps {
     fact: string;
@@ -10,7 +14,7 @@ interface FactsProps {
 
 interface Input {
     value: string;
-    onChange: (e) => void;
+    onChange: (e: any) => void;
 }
 
 interface FactContextProps {
@@ -28,22 +32,22 @@ interface FactContextProps {
 
 const FactContext = createContext({} as FactContextProps);
 
-function FactProvider({ children }) {
+function FactProvider({ children }: FactsProvideProps) {
     const inputSizeFacts = useForm();
     const inputAmountFacts = useForm();
-    
+
     const [notFoundFacts, setNotFoundFacts] = useState(false);
     const [nextPage, setNextPage] = useState(2);
     const [lastPage, setLastPage] = useState(0);
-    
-    const [randomFact, setRandomFact] = useState<FactsProps>(null);
+
+    const [randomFact, setRandomFact] = useState<FactsProps>({} as FactsProps);
     const [facts, setFacts] = useState<FactsProps[]>([]);
-    
+
     const [isLoading, setIsLoading] = useState(false);
 
     function handleSetTypeList() {
         setFacts([]);
-        setRandomFact(null);
+        setRandomFact({} as FactsProps);
         setNotFoundFacts(false);
         setNextPage(2);
         setLastPage(0);
@@ -53,7 +57,7 @@ function FactProvider({ children }) {
 
     async function getRandomFact() {
         setIsLoading(true);
-        const {data} = await api.get(`/fact?max_length=${inputSizeFacts.value}`);
+        const { data } = await api.get(`/fact?max_length=${inputSizeFacts.value}`)
         { !data.fact ? setNotFoundFacts(true) : setNotFoundFacts(false) }
         setRandomFact(data);
         setIsLoading(false);
@@ -61,7 +65,7 @@ function FactProvider({ children }) {
 
     async function getFacts() {
         setIsLoading(true);
-        const {data} = await api.get(`/facts?max_length=${inputSizeFacts.value}&limit=${inputAmountFacts.value}`)
+        const { data } = await api.get(`/facts?max_length=${inputSizeFacts.value}&limit=${inputAmountFacts.value}`)
         { data.data.length === 0 ? setNotFoundFacts(true) : setNotFoundFacts(false) }
         setFacts(data.data);
         setLastPage(data.last_page);
@@ -71,7 +75,7 @@ function FactProvider({ children }) {
     async function moreFacts() {
         if (nextPage < lastPage && inputAmountFacts.value === '') {
             setIsLoading(true);
-            const {data} =  await api.get(`/facts?max_length=${inputSizeFacts.value}&page=${nextPage}`);
+            const { data } = await api.get(`/facts?max_length=${inputSizeFacts.value}&page=${nextPage}`);
             setFacts([...facts, ...data.data]);
             setNextPage(nextPage + 1);
             setIsLoading(false);

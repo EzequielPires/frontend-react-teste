@@ -15,6 +15,7 @@ export function InputDefault({ label, value, onChange, placeholder, id }: Props)
             <FormLabel htmlFor='first-name' fontSize={['.875rem', '1rem']}>{label}</FormLabel>
             <Input
                 id={id}
+                data-testid={id}
                 borderColor={'gray.300'}
                 _focus={{borderColor: 'white'}}
                 value={value}

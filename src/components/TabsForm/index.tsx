@@ -1,5 +1,5 @@
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs, VStack } from "@chakra-ui/react";
-import { useFact } from "src/hooks/useFacts";
+import { useFact } from "../../hooks/useFacts";
 import { ButtonPrimary } from "../ButtonPrimary";
 import { Card } from "../Card";
 import { InputDefault } from "../InputDefault";
@@ -61,7 +61,14 @@ export function TabsForm() {
             </TabList>
             <TabPanels mt={'16px'}>
                 <TabPanel display={'flex'} flexDirection='column' alignItems={'center'}>
-                    <VStack as='form' onSubmit={handleGetRandomFacts} display={'flex'} justifyContent={'center'} gap={'24px'} width={'100%'}>
+                    <VStack
+                        as='form'
+                        onSubmit={handleGetRandomFacts}
+                        display={'flex'}
+                        justifyContent={'center'}
+                        gap={'24px'}
+                        width={'100%'}
+                    >
                         <InputDefault
                             label="Tamanho máximo do fato"
                             placeholder="Ex.: 248"
@@ -77,12 +84,23 @@ export function TabsForm() {
                     </VStack>
                     {randomFact?.fact &&
                         <Box mt={'1.5rem'} w={'100%'}>
-                            <Card fact={randomFact.fact} length={randomFact.length} />
+                            <Card fact={randomFact.fact} />
                         </Box>
                     }
                 </TabPanel>
-                <TabPanel display={'flex'} flexDirection='column' alignItems={'center'}>
-                    <VStack as='form' onSubmit={handleGetFacts} display={'flex'} justifyContent={'center'} gap={'24px'} width={'100%'}>
+                <TabPanel
+                    display={'flex'}
+                    flexDirection='column'
+                    alignItems={'center'}
+                >
+                    <VStack
+                        as='form'
+                        onSubmit={handleGetFacts}
+                        display={'flex'}
+                        justifyContent={'center'}
+                        gap={'24px'}
+                        width={'100%'}
+                    >
                         <InputDefault
                             label="Tamanho máximo do fato"
                             placeholder="Ex.: 248"
